@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap JS and Popper.js (required for some Bootstrap components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Google Fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue color for the body background */
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
+            color: #333; /* Dark gray text color */
+        }
+
+        .navbar {
+            background-color: #28a745;
+
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff; /* White text color */
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 20px;
+        }
+
+        .form-group {
+            padding-left: 50px; /* Add left margin to form-group */
+        }
+
+        .center-container {
+            display: flex;
+            height: 100vh; /* 100% of the viewport height */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+
+        .form-container {
+            background-color: #d3ffd3; /* Light green color for the form background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-top: 20px; /* Add some top margin */
+        }
+
+        h1{
+            margin-top: 50px;
+            margin-bottom: 100px;
+            color: #333; /* Dark gray text color */
+        }
+        .uploaded-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <title>Your Page Title</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="material-symbols-outlined">
+                     Курсовая работа
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" style="font-size: 20px" href="/">Определить класс</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" style="font-size: 20px" href="/display/">Загруженое</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+     <div class="center-container">
+        <h1>Определить класс</h1>
+        <div class="form-container text-center">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group mx-auto"> <!-- Apply mx-auto to center the form group -->
+                    <input type="file" name="myfile1" class="form-control-file" id="myfile1">
+                </div>
+                <button type="submit" class="btn btn-success">Загрузить</button>
+            </form>
+
+            {% if file_url %}
+                <img src="{{ file_url }}" alt="Uploaded Image" class="uploaded-image mt-3">
+                <p class="mt-3">Ссылка: <a href="{{ file_url }}">{{ file_url }}</a></p>
+            {% endif %}
+
+            <p>Класс: <a>{{ text }}</a></p>
+
+        </div>
+    </div>
+</body>
+
+</html>

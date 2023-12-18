@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Display Photos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap JS and Popper.js (required for some Bootstrap components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff; /* Light blue color for the body background */
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
+            color: #333; /* Dark gray text color */
+        }
+
+        .navbar {
+            background-color: #28a745;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff; /* White text color */
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 45px;
+            margin-bottom: 50px; /* Increase margin at the bottom */
+            color: #333; /* Dark gray text color */
+        }
+
+        table {
+            border-collapse: collapse; /* Remove spacing between table cells */
+            width: 80%;
+            background-color: #d3ffd3;
+            margin: auto; /* Center the table */
+            border: 2px solid #000000; /* Bolder border */
+            border-radius: 20px;
+            overflow: hidden; /* Hide overflowing content */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        tth, td {
+        padding: 5px;
+        text-align: center;
+    }
+
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+        .pagination a {
+            margin-right: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="material-symbols-outlined">
+                     Курсовая работа
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" style="font-size: 20px" href="/">Определить класс</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" style="font-size: 20px" href="/display/">Загруженое</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Загруженные картинки</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Картинка</th>
+            <th>Класс</th>
+            <th>Дата и время загрузки</th>
+        </tr>
+        {% for photo in photos %}
+        <tr>
+            <td>{{ photo.id }}</td>
+            <td> <a href="{{ photo.photo_link }}"><img src="{{ photo.photo_link }}">{{ photo.photo_link }}</a> </td>
+            <td>{{ photo.class_name }}</td>
+            <td>{{ photo.upload_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
